@@ -1,26 +1,38 @@
 # Web App
 
-## Overview
-Front-end application for end users and operators. Built for accessibility, performance, and reliability.
+## Purpose
+Front-end application (end-user & operator UI). Reads on-chain and calls server APIs.
 
-## Scope
-- Implement the user interface
-- Integrate with the Backend API and blockchain data
-- Provide basic observability hooks
+## Responsibilities
+- Implement user workflows and views
+- Use **read-only** on-chain calls where appropriate
+- Delegate **writes** to `backend-api`
 
-## Tech stack
-TBD (e.g., Next.js, TypeScript)
+## Interfaces (in / out)
+- **Out:** HTTP to **backend-api**
+- **In (artefacts):** **ABIs** from `contracts` for client-side decoding (read-only)
+
+## Interactions with other repositories
+- **backend-api:** main data/API provider
+- **contracts:** ABIs for client-side types/decoding
+- **deploy:** local dev orchestration and environment wiring
+
+## Directory layout (provisional)
+- `src/` application code
+- `public/` static assets
+- `Dockerfile` container build
 
 ## Local development
 - Install dependencies: `npm ci`
-- Start dev server: see `package.json` scripts
-- Environment variables in `.env.local` (do not commit secrets)
+- Start the dev server (see `package.json` scripts)
+- Env in `.env.local` (never commit secrets)
 
 ## Testing
-Unit tests (e.g., Vitest/Jest) and component tests as added.
+- Unit/component tests as added (e.g. Vitest/Jest/RTL)
 
-## CI
-Builds, lints, and tests on PR and push.
+## CI/CD
+- Lint & tests on PR/push
+- Build (and optionally containerise) on push to `main`
 
-## Deployment
-Built artefacts or Docker images are consumed by the `deploy` repo.
+## Versioning & releases
+- Front-end artefacts or container images; deployed via `deploy`
